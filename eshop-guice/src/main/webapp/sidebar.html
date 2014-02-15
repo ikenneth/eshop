@@ -1,0 +1,14 @@
+<div class="family-list" ng-controller="FamilyListCtrl">
+    <ul class="nav">
+        <li ng-repeat="family in familyService.families">
+            <a href="#" ng-class="{'active': familyService.isFamilySelected(family)}"
+               ng-click="familyService.selectFamily(family)">{{family.name}}</a>
+            <ul ng-if="family.subFamilies">
+                <li ng-repeat="subFamily in family.subFamilies">
+                    <a href="#" ng-class="{'active': familyService.isSubFamilySelected(subFamily)}"
+                       ng-click="familyService.selectSubFamily(subFamily)">{{subFamily.name}}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>

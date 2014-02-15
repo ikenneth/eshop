@@ -1,0 +1,43 @@
+<h2>Authentification</h2>
+<hr/>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="well well-sm">
+            <h3>Inscription</h3>
+            <p>Vous pouvez vous incrire</p>
+            <div class="row">
+                <div class="col-sm-12">
+                    <a type="button" class="btn btn-primary pull-right"
+                            href="#/register">Créer un compte</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6">
+        <div class="well well-sm">
+            <h3>J'ai un compte</h3>
+            <form role="form">
+                <div class="form-group">
+                    <label for="emailInput">Votre mail</label>
+                    <input id="emailInput" type="email" ng-model="email"
+                           placeholder="Entrez votre mail" class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <label for="passwordInput">Votre mot de passe</label>
+                    <input id="passwordInput" type="password" ng-model="password"
+                           placeholder="Entrez votre mot de passe" class="form-control"/>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button type="submit" class="btn btn-primary pull-right"
+                                ng-click="service.login(email, password)">Valider</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+

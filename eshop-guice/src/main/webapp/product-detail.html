@@ -1,0 +1,86 @@
+<div class="product-detail">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>{{product.name}}</h2>
+            <hr/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="image?productId={{product.id}}" style="max-width: 320px;max-height: 320px;"/>
+        </div>
+        <div class="col-md-8">
+            <p><label>Publication :&nbsp;</label>{{product.releaseDate | date :'dd-MM-yyyy'}}</p>
+            <div ng-if="product.type == 'Book'">
+                <p><label>Auteurs :&nbsp;</label>
+                    <span ng-repeat="author in product.authors">{{author.name}}{{!$last?', ':''}}</span></p>
+                <p><label>ISBN :&nbsp;</label>{{product.isbn}}</p>
+                <p><label>Langue :&nbsp;</label>{{getLanguage(product.language)}}</p>
+                <p><label>Nb pages :&nbsp;</label>{{product.pages}}</p>
+            </div>
+
+            <div ng-if="product.type == 'Movie'">
+                <p><label>Réalisateur :&nbsp;</label>{{product.director.name}}</p>
+                <p><label>Acteurs :&nbsp;</label>
+                    <span ng-repeat="actor in product.actors">{{actor.name}}{{!$last?', ':''}}</span></p>
+                <p><label>Langues :&nbsp;</label>
+                    <span ng-repeat="language in product.languages">{{getLanguage(language)}}{{!$last?', ':''}}</span></p>
+            </div>
+
+            <p ng-if="product.type == 'Album'"><label>Artistes : </label>
+                    <span ng-repeat="artist in product.artists">{{artist.name}}{{!$last?', ':''}}</span></p>
+
+            <p ng-if="product.type == 'Movie' || product.type == 'Album'">
+                <label>Durée :&nbsp;</label>{{product.length}}</p>
+
+            <h3>Prix: {{product.price}} &euro;</h3><br>
+
+            <form class="form-inline" role="form">
+                <div class="form-group">
+                    <label for="qtyInput" class="control-label">Qt&eacute; :</label>
+                    <input id="qtyInput" type="number" class="form-control">
+                </div>
+                <button class="btn btn-primary" type="button">
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Ajouter
+                </button>
+            </form>
+
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div rating/>
+        </div>
+    </div>
+
+        <hr/>
+
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li class="active">
+                    <a href="#">Description</a>
+                </li>
+                <li>
+                    <a href="#">Commentaires</a>
+                </li>
+                <li>
+                    <a href="#">Produits similaires</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <p>{{product.description}}</p>
+                </div>
+                <div class="tab-pane">
+                    <p>Commentaires...</p>
+                </div>
+                <div class="tab-pane">
+                    <p>Les produits similaires...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

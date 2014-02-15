@@ -1,0 +1,10 @@
+<div class="input-group" ng-controller="ProductSearchCtrl">
+    <input type="search" class="form-control"
+           placeholder="Rechercher" ng-model="keyword">
+        <span class="input-group-btn">
+            <button class="btn btn-default" type="button"
+                    ng-click="service.searchByKeyword(keyword)">
+                <span class="glyphicon glyphicon-search"></span>
+            </button>
+        </span>
+</div><!-- /search input-group -->
