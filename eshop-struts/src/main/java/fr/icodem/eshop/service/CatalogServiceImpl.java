@@ -1,0 +1,86 @@
+package fr.icodem.eshop.service;
+
+import fr.icodem.eshop.model.*;
+import org.hibernate.Hibernate;
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service @Transactional
+public class CatalogServiceImpl implements CatalogService {
+
+    @Autowired
+    private SessionFactory sf;
+
+    @Override
+    public List<ProductFamily> findFamilies() {
+        Session session = sf.getCurrentSession();
+        String jpql = "select distinct f from ProductFamily f left join fetch f.subFamilies " +
+                "where f not in (select elements(pf.subFamilies) from ProductFamily pf)";
+        Query query = session.createQuery(jpql);
+        List<ProductFamily> families = query.list();
+
+        return families;
+    }
+
+    @Override
+    public List<Product> findProducts(int familyId, String productType, String keyword) {
+        Session session = sf.getCurrentSession();
+        String jpql = "select p from " +  productType + " p where 1=1";
+        if (familyId != -1) {
+            jpql += " and (p.family.id = :familyId or p.family in " +
+                    "(select elements(f.subFamilies) from ProductFamily f where f.id = :familyId))";
+        }
+        if (keyword != null && keyword.trim().length() > 0) {
+            jpql += " and p.name like :keyword";
+        }
+
+        Query query = session.createQuery(jpql);
+        query.setMaxResults(30);
+        if (familyId != -1) {
+            query.setParameter("familyId", familyId);
+        }
+        if (keyword != null && keyword.trim().length() > 0) {
+            keyword = "%" + keyword.trim() + "%";
+            query.setParameter("keyword", keyword);
+        }
+
+        List<Product> products = query.list();
+
+        return products;
+    }
+
+    @Override
+    public Product findProduct(int productId) {
+        Session session = sf.getCurrentSession();
+        Product p = (Product) session.get(Product.class, productId);
+
+        if (p instanceof Book) {
+            Book b = (Book)p;
+            Hibernate.initialize(b.getAuthors());
+        }
+        if (p instanceof Movie) {
+            Movie m = (Movie)p;
+            Hibernate.initialize(m.getLanguages());
+            Hibernate.initialize(m.getActors());
+        }
+        if (p instanceof Album) {
+            Album a = (Album)p;
+            Hibernate.initialize(a.getArtists());
+        }
+        return p;
+    }
+
+    @Override
+    public ProductImage findProductImage(int imageId) {
+        Session session = sf.getCurrentSession();
+        ProductImage image = (ProductImage) session.get(ProductImage.class, imageId);
+        return image;
+    }
+}
