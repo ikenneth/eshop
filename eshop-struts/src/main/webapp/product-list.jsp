@@ -1,6 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 
 <%--
@@ -44,7 +44,7 @@
                 </s:text>
             </p>
 
-            <s:a action="cart" cssClass="btn btn-primary">
+            <s:a action="cart-add-item" cssClass="btn btn-primary">
                 <span class="glyphicon glyphicon-shopping-cart"></span> Ajouter
                 <s:param name="keyword"><s:property value="keyword"/></s:param>
                 <s:param name="familyId"><s:property value="familyId"/></s:param>

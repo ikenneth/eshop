@@ -56,6 +56,10 @@ public class Cart {
         }
     }
 
+    public boolean isEmpty() {
+        return (items == null || items.size() == 0);
+    }
+
     // getters and setters
     public List<CartItem> getItems() {
         return items;

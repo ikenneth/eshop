@@ -73,6 +73,21 @@
 }
 
 /* cart */
-.shopping-cart input[type='number'] {
-    width: 60px;
+.shopping-cart tbody > tr > td:first-child {
+    width: 80px;
+}
+.shopping-cart tbody > tr > td:first-child + td {
+    text-align: left;
+}
+.shopping-cart > div + div:not(.cart-empty) {
+    text-align: right;
+}
+.shopping-cart > div + div + div {
+    text-align: right;
+    margin-top: 10px;
+}
+
+/* login */
+.field-error {
+    color: #a94442;
 }

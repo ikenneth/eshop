@@ -28,6 +28,9 @@
         <action name="index">
             <result>/index.jsp</result>
         </action>
+        <action name="about">
+            <result>/about.jsp</result>
+        </action>
         <action name="login-input" class="fr.icodem.eshop.struts.LoginAction" method="input">
             <result name="input">/login.jsp</result>
         </action>
@@ -52,7 +55,10 @@
         <action name="product-image" class="fr.icodem.eshop.struts.ProductImageAction">
             <result name="success" type="productImage"/>
         </action>
-        <action name="cart" class="fr.icodem.eshop.struts.CartAction" method="addItem">
+        <action name="cart-input" class="fr.icodem.eshop.struts.CartAction">
+            <result>/cart.jsp</result>
+        </action>
+        <action name="cart-add-item" class="fr.icodem.eshop.struts.CartAction" method="addItem">
             <result name="product-detail" type="redirectAction">
                 <param name="actionName">product-detail</param>
                 <param name="productId">${productId}</param>
@@ -62,6 +68,10 @@
                 <param name="familyId">${familyId}</param>
                 <param name="keyword">${keyword}</param>
             </result>
+            <result name="cart">/cart.jsp</result>
+        </action>
+        <action name="cart-remove-item" class="fr.icodem.eshop.struts.CartAction" method="removeItem">
+            <result>/cart.jsp</result>
         </action>
 
     </package>

@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
@@ -7,7 +8,7 @@
 <div class="row">
     <div class="col-md-10"></div>
     <div class="col-md-2">
-        <a href="#/login">Connexion</a>  | <a href="#/about">&Agrave; propos</a>
+        <s:a action="login-input">Connexion</s:a>  | <s:a action="about">&Agrave; propos</s:a>
     </div>
 </div>
 <div class="row">
@@ -47,13 +48,16 @@
         <page:applyDecorator name="empty" page="/search.jsp"/>
     </div>
     <div class="col-md-2">
-        <img src="images/basket.png" width="40"/>
-        <a href="#/cart">
+        <s:a action="cart-input">
+            <img src="images/basket.png" width="40"/>
+        </s:a>
+        <s:a action="cart-input">
             Panier
             <s:text name="format.money">
                 <s:param name="value" value="#session.cart.totalPrice"/>
             </s:text>
             &nbsp;(<s:property value="#session.cart.totalQuantity"/>)
+        </s:a>
         </a>
     </div>
 </div>

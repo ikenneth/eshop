@@ -32,6 +32,12 @@ public class CartAction extends ActionSupport implements SessionAware {
         return from;
     }
 
+    public String removeItem() throws Exception {
+        Cart cart = (Cart) session.get("cart");
+        cart.remove(productId);
+        return SUCCESS;
+    }
+
     // getters and setters
     public int getProductId() {
         return productId;

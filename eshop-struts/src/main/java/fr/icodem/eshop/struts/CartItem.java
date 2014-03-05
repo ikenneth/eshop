@@ -20,6 +20,9 @@ public class CartItem {
     }
 
     // getters and setters
+    public double getTotalPrice() {
+        return product.getPrice() * quantity;
+    }
     public Product getProduct() {
         return product;
     }

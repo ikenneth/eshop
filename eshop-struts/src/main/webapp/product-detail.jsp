@@ -1,6 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <div class="product-detail">
     <div class="row">
@@ -69,7 +69,7 @@
             </h3>
             <br>
 
-            <s:form cssClass="form-inline" role="form" theme="simple" action="cart">
+            <s:form cssClass="form-inline" role="form" theme="simple" action="cart-add-item">
                 <div class="form-group">
                     <label for="qtyInput" class="control-label">Qt&eacute; :</label>
                     <s:textfield name="quantity" cssClass="form-control" value="1"
