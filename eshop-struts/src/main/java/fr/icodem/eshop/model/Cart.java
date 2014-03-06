@@ -1,12 +1,11 @@
-package fr.icodem.eshop.struts;
+package fr.icodem.eshop.model;
 
-import fr.icodem.eshop.model.Product;
-
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class Cart {
+public class Cart implements Serializable {
     private List<CartItem> items;
     private double totalPrice;
     private int totalQuantity;

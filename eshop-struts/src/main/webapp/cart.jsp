@@ -17,6 +17,13 @@
         </div>
     </s:if>
     <s:else>
+        <s:if test="#session.user == null">
+            <div class="row">
+                <div class="col-md-12">
+                    <p class="text-center alert alert-info">Vous devez vous connecter pour passer la commande</p>
+                </div>
+            </div>
+        </s:if>
         <div class="row">
             <div class="col-md-12">
                 <table class="table">

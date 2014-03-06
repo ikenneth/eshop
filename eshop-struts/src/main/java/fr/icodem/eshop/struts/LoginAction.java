@@ -2,29 +2,35 @@ package fr.icodem.eshop.struts;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.RequiredStringValidator;
+import fr.icodem.eshop.exception.AuthenticationException;
+import fr.icodem.eshop.model.Customer;
+import fr.icodem.eshop.model.User;
+import fr.icodem.eshop.service.SecurityService;
 import org.apache.struts2.interceptor.SessionAware;
 
+import javax.annotation.Resource;
 import java.util.Map;
 
 public class LoginAction extends ActionSupport implements SessionAware {
 
+    @Resource
+    private SecurityService service;
+
     private String username;
     private String password;
-
-    private String message;
 
     private Map<String, Object> session;
 
     @Override
     public String execute() throws Exception {
-        if ("admin".equals(username) && "admin".equals(password)) {
-            message = "";
-            session.put("user", "admin");
+        try {
+            User u = service.authenticate(username, password);
+            session.put("user", u);
             return SUCCESS;
+        } catch (AuthenticationException ae) {
+            addActionError("Authentication failed");
+            return LOGIN;
         }
-
-        message = "Authentication failed";
-        return LOGIN;
     }
 
     /*  method validation
@@ -61,14 +67,6 @@ public class LoginAction extends ActionSupport implements SessionAware {
     @RequiredStringValidator(message = "You must enter a password")
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
     }
 
 }

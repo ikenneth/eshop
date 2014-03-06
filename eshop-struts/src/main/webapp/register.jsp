@@ -1,125 +1,119 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-<s:if test="!registrationOK">
-    <s:form action="register">
-        <s:textfield name="username" key="username"/>
-        <s:password name="password1" key="password"/>
-        <s:password name="password2" label="Confirm password"/>
-        <s:submit value="Register"/>
-    </s:form>
-</s:if>
-
-<s:if test="registrationOK">
-    <s:property value="getText('welcome')"/>
-    <s:text name="welcome"/>
-    <s:text name="thankyou"/>
-</s:if>
-
-<s:if test="hasActionMessages()">
-    <div class="message">
-        <s:actionmessage/>
-    </div>
-</s:if>
-
-<s:if test="hasActionErrors()">
-    <div class="error">
-        <s:actionerror/>
-    </div>
-</s:if>
-
-<s:a action="login-input">Login</s:a>
-
-
-<br><br>
-
 <h2>Créer un compte</h2>
 <hr>
 
-<div class="row">
-    <div class="col-md-6">
-        <h3>Vos informations personnelles</h3>
-        <hr>
-        <form class="form-horizontal" role="form">
-            <div class="form-group">
-                <label for="firstNameInput" class="control-label col-sm-2">Prénom</label>
-                <div class="col-sm-10">
-                    <input id="firstNameInput" type="text" class="form-control"/>
+<s:form action="register" theme="simple">
+    <div class="row">
+        <div class="col-md-5">
+            <h3>Vos informations personnelles</h3>
+            <hr>
+            <div class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="firstNameInput" class="control-label col-sm-2">Prénom</label>
+                    <div class="col-sm-10">
+                        <s:textfield name="registration.firstName" id="firstNameInput"
+                                     cssClass="form-control" theme="simple"/>
+                        <s:fielderror fieldName="registration.firstName" theme="eshop"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="lastNameInput" class="control-label col-sm-2">Nom</label>
+                    <div class="col-sm-10">
+                        <s:textfield name="registration.lastName" id="lastNameInput"
+                                     cssClass="form-control" theme="simple"/>
+                        <s:fielderror fieldName="registration.lastName" theme="eshop"/>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="lastNameInput" class="control-label col-sm-2">Nom</label>
-                <div class="col-sm-10">
-                    <input id="lastNameInput" type="text" class="form-control"/>
+        </div>
+
+        <div class="col-md-7">
+            <h3>Votre adresse</h3>
+            <hr>
+            <div class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="streetInput" class="control-label col-sm-3">Rue</label>
+                    <div class="col-sm-9">
+                        <s:textfield name="registration.street" id="streetInput"
+                                     cssClass="form-control" theme="simple"/>
+                        <s:fielderror fieldName="registration.street" theme="eshop"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="cityInput" class="control-label col-sm-3">Ville</label>
+                    <div class="col-sm-9">
+                        <s:textfield name="registration.city" id="cityInput"
+                                     cssClass="form-control" theme="simple"/>
+                        <s:fielderror fieldName="registration.city" theme="eshop"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="zipCodeInput" class="control-label col-sm-3">Code postal</label>
+                    <div class="col-sm-9">
+                        <s:textfield name="registration.postCode" id="zipCodeInput"
+                                     cssClass="form-control" theme="simple"/>
+                        <s:fielderror fieldName="registration.postCode" theme="eshop"/>
+                    </div>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 
-    <div class="col-md-6">
-        <h3>Votre adresse</h3>
-        <hr>
-        <form class="form-horizontal" role="form">
-            <div class="form-group">
-                <label for="streetInput" class="control-label col-sm-2">Rue</label>
-                <div class="col-sm-10">
-                    <input id="streetInput" type="text" class="form-control"/>
+    <div class="row">
+        <div class="col-md-12">
+            <h3>Vos informations de connexion</h3>
+            <hr>
+        </div>
+        <div class="col-md-5">
+            <div class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="emailInput" class="control-label col-sm-2">Mail</label>
+                    <div class="col-sm-10">
+                        <s:textfield name="registration.username" id="emailInput" type="email"
+                                     cssClass="form-control" theme="simple"/>
+                        <s:fielderror fieldName="registration.username" theme="eshop"/>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="cityInput" class="control-label col-sm-2">Ville</label>
-                <div class="col-sm-10">
-                    <input id="cityInput" type="text" class="form-control"/>
+        </div>
+        <div class="col-md-7">
+            <div class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label for="passwordInput" class="control-label col-sm-3">Mot de passe</label>
+                    <div class="col-sm-9">
+                        <s:password name="registration.password1" id="passwordInput"
+                                     cssClass="form-control" theme="simple"/>
+                        <s:fielderror fieldName="registration.password1" theme="eshop"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPasswordInput" class="control-label col-sm-3">Confirmer le mot de passe</label>
+                    <div class="col-sm-9">
+                        <s:password name="registration.password2" id="confirmPasswordInput"
+                                     cssClass="form-control" theme="simple"/>
+                        <s:fielderror fieldName="registration.password2" theme="eshop"/>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="zipCodeInput" class="control-label col-sm-2">Code postal</label>
-                <div class="col-sm-10">
-                    <input id="zipCodeInput" type="text" class="form-control"/>
-                </div>
-            </div>
-        </form>
+        </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-md-12">
-        <h3>Vos informations de connexion</h3>
-        <hr>
+    <div class="row">
+        <div class="col-sm-12">
+            <button type="submit" class="btn btn-primary pull-right">S'incrire</button>
+        </div>
     </div>
-    <div class="col-md-6">
-        <form class="form-horizontal" role="form">
-            <div class="form-group">
-                <label for="emailInput" class="control-label col-sm-2">Mail</label>
-                <div class="col-sm-10">
-                    <input id="emailInput" type="email" class="form-control"/>
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="col-md-6">
-        <form class="form-horizontal" role="form">
-            <div class="form-group">
-                <label for="passwordInput" class="control-label col-sm-2">Mot de passe</label>
-                <div class="col-sm-10">
-                    <input id="passwordInput" type="password" class="form-control"/>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="confirmPasswordInput" class="control-label col-sm-2">Confirmer le mot de passe</label>
-                <div class="col-sm-10">
-                    <input id="confirmPasswordInput" type="password" class="form-control"/>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
 
-<div class="row">
-    <div class="col-sm-12">
-        <button type="submit" class="btn btn-primary pull-right">S'incrire</button>
-    </div>
-</div>
+</s:form>
 
-<br><br>
+<%--
+    <s:if test="hasActionMessages()">
+        <s:actionmessage/>
+    </s:if>
+    <s:if test="hasActionErrors()">
+        <s:actionerrors/>
+    </s:if>
+--%>
 

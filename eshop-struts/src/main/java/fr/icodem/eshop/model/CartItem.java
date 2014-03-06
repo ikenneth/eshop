@@ -1,8 +1,8 @@
-package fr.icodem.eshop.struts;
+package fr.icodem.eshop.model;
 
-import fr.icodem.eshop.model.Product;
+import java.io.Serializable;
 
-public class CartItem {
+public class CartItem implements Serializable {
     private Product product;
     private int quantity;
 

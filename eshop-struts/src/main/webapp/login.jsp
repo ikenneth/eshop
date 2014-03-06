@@ -41,6 +41,10 @@
                 </div>
             </s:form>
         </div>
+        <s:if test="hasActionErrors()">
+            <%--<div class="alert alert-danger"><s:actionerror theme="eshop"/></div>--%>
+            <s:actionerror theme="eshop"/>
+        </s:if>
     </div>
 </div>
 

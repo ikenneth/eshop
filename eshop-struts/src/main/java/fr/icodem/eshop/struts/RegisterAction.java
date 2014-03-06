@@ -1,56 +1,43 @@
 package fr.icodem.eshop.struts;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.Preparable;
+import fr.icodem.eshop.exception.RegistrationException;
+import fr.icodem.eshop.model.Registration;
+import fr.icodem.eshop.service.SecurityService;
 
-public class RegisterAction extends ActionSupport {
+import javax.annotation.Resource;
 
-    private String username;
-    private String password1;
-    private String password2;
+public class RegisterAction extends ActionSupport implements Preparable {
 
-    private boolean registrationOK;
+    @Resource
+    private SecurityService service;
+
+    private Registration registration;
+
+    @Override
+    public void prepare() throws Exception {
+        registration = new Registration();
+    }
 
     public String execute() throws Exception {
-        if ("admin".equals(username)) {
-            addActionError("This username is already used");
+        try {
+            service.register(registration);
+        } catch (RegistrationException re) {
+            addFieldError("registration.username", "This username is already used");
             return INPUT;
         }
 
-        registrationOK = true;
-        addActionMessage("You are now registered");
         return SUCCESS;
     }
 
     // getters and setters
-    public String getUsername() {
-        return username;
+    public Registration getRegistration() {
+        return registration;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setRegistration(Registration registration) {
+        this.registration = registration;
     }
 
-    public String getPassword1() {
-        return password1;
-    }
-
-    public void setPassword1(String password1) {
-        this.password1 = password1;
-    }
-
-    public String getPassword2() {
-        return password2;
-    }
-
-    public void setPassword2(String password2) {
-        this.password2 = password2;
-    }
-
-    public boolean isRegistrationOK() {
-        return registrationOK;
-    }
-
-    public void setRegistrationOK(boolean registrationOK) {
-        this.registrationOK = registrationOK;
-    }
 }

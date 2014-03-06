@@ -25,6 +25,9 @@
                 <value>fr.icodem.eshop.model.ProductFamily</value>
                 <value>fr.icodem.eshop.model.ProductImage</value>
                 <value>fr.icodem.eshop.model.Figure</value>
+                <value>fr.icodem.eshop.model.Customer</value>
+                <value>fr.icodem.eshop.model.User</value>
+                <value>fr.icodem.eshop.model.Address</value>
             </list>
         </property>
         <property name="hibernateProperties">

@@ -1,6 +1,7 @@
 package fr.icodem.eshop.struts;
 
 import com.opensymphony.xwork2.ActionSupport;
+import fr.icodem.eshop.model.Cart;
 import fr.icodem.eshop.model.Product;
 import fr.icodem.eshop.service.CatalogService;
 import org.apache.struts2.interceptor.SessionAware;

@@ -6,7 +6,7 @@
   		
   		
 <validators>
-    <field name="username">
+    <field name="registration.username">
         <field-validator type="requiredstring">
             <message>Username is required</message>
         </field-validator>
@@ -15,7 +15,7 @@
             <message>You cannot use this username</message>
         </field-validator>
     </field>
-    <field name="password1">
+    <field name="registration.password1">
         <field-validator type="requiredstring">
             <message>Password is required</message>
         </field-validator>
@@ -28,10 +28,38 @@
             <message>Alphanumeric only</message>
         </field-validator>
     </field>
-    <field name="password2">
+    <field name="registration.password2">
+        <field-validator type="requiredstring">
+            <message>Confirm password is required</message>
+        </field-validator>
         <field-validator type="fieldexpression">
-            <param name="expression">(password1 == password2)</param>
+            <param name="expression">(registration.password1 == registration.password2)</param>
             <message>Must be the same as password</message>
+        </field-validator>
+    </field>
+    <field name="registration.firstName">
+        <field-validator type="requiredstring">
+            <message>First name is required</message>
+        </field-validator>
+    </field>
+    <field name="registration.lastName">
+        <field-validator type="requiredstring">
+            <message>Last name is required</message>
+        </field-validator>
+    </field>
+    <field name="registration.street">
+        <field-validator type="requiredstring">
+            <message>First name is required</message>
+        </field-validator>
+    </field>
+    <field name="registration.city">
+        <field-validator type="requiredstring">
+            <message>Street is required</message>
+        </field-validator>
+    </field>
+    <field name="registration.postCode">
+        <field-validator type="requiredstring">
+            <message>Post code is required</message>
         </field-validator>
     </field>
 </validators>
