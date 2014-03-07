@@ -9,7 +9,7 @@
             <hr/>
         </div>
     </div>
-    <s:if test="#session.cart.isEmpty()">
+    <s:if test="cart.isEmpty()">
         <div class="row cart-empty">
             <div class="col-md-12">
                 <h3>Le panier est vide</h3>
@@ -17,10 +17,17 @@
         </div>
     </s:if>
     <s:else>
-        <s:if test="#session.user == null">
+        <s:if test="hasActionMessages()">
             <div class="row">
                 <div class="col-md-12">
-                    <p class="text-center alert alert-info">Vous devez vous connecter pour passer la commande</p>
+                    <s:actionmessage theme="eshop"/>
+                </div>
+            </div>
+        </s:if>
+        <s:if test="hasActionErrors()">
+            <div class="row">
+                <div class="col-md-12">
+                    <s:actionerror theme="eshop"/>
                 </div>
             </div>
         </s:if>
@@ -34,7 +41,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <s:iterator value="#session.cart.items">
+                        <s:iterator value="cart.items">
                             <tr>
                                 <td>
                                     <s:if test="product.image != null">
@@ -77,24 +84,26 @@
             <div class="col-md-12">
                 <strong>Total :&nbsp;
                     <s:text name="format.money">
-                        <s:param name="value" value="#session.cart.totalPrice"/>
+                        <s:param name="value" value="cart.totalPrice"/>
                     </s:text>
                 </strong>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <s:if test="#session.user != null">
-                    <s:a action="cart-remove-item" cssClass="btn btn-success">
-                        <span class="glyphicon glyphicon-check"></span> Passer la commande
-                    </s:a>
-                </s:if>
-                <s:else>
-                    <a class="btn btn-success" disabled>
-                        <span class="glyphicon glyphicon-check"></span> Passer la commande
-                    </a>
-                </s:else>
+        <s:if test="!cart.checkedOut">
+            <div class="row">
+                <div class="col-md-12">
+                    <s:if test="#session.user != null">
+                        <s:a action="checkout" cssClass="btn btn-success">
+                            <span class="glyphicon glyphicon-check"></span> Passer la commande
+                        </s:a>
+                    </s:if>
+                    <s:elseif test="!cart.checkedOut">
+                        <a class="btn btn-success" disabled>
+                            <span class="glyphicon glyphicon-check"></span> Passer la commande
+                        </a>
+                    </s:elseif>
+                </div>
             </div>
-        </div>
+        </s:if>
     </s:else>
 </div>

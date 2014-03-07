@@ -21,9 +21,9 @@ public class CatalogServiceImpl implements CatalogService {
     @Override
     public List<ProductFamily> findFamilies() {
         Session session = sf.getCurrentSession();
-        String jpql = "select distinct f from ProductFamily f left join fetch f.subFamilies " +
+        String hql = "select distinct f from ProductFamily f left join fetch f.subFamilies " +
                 "where f not in (select elements(pf.subFamilies) from ProductFamily pf)";
-        Query query = session.createQuery(jpql);
+        Query query = session.createQuery(hql);
         List<ProductFamily> families = query.list();
 
         return families;
@@ -32,16 +32,16 @@ public class CatalogServiceImpl implements CatalogService {
     @Override
     public List<Product> findProducts(int familyId, String productType, String keyword) {
         Session session = sf.getCurrentSession();
-        String jpql = "select p from " +  productType + " p where 1=1";
+        String hql = "select p from " +  productType + " p where 1=1";
         if (familyId != -1) {
-            jpql += " and (p.family.id = :familyId or p.family in " +
+            hql += " and (p.family.id = :familyId or p.family in " +
                     "(select elements(f.subFamilies) from ProductFamily f where f.id = :familyId))";
         }
         if (keyword != null && keyword.trim().length() > 0) {
-            jpql += " and p.name like :keyword";
+            hql += " and p.name like :keyword";
         }
 
-        Query query = session.createQuery(jpql);
+        Query query = session.createQuery(hql);
         query.setMaxResults(30);
         if (familyId != -1) {
             query.setParameter("familyId", familyId);

@@ -6,9 +6,18 @@
     <div class="col-md-12">&nbsp;</div>
 </div>
 <div class="row">
-    <div class="col-md-10"></div>
-    <div class="col-md-2">
-        <s:a action="login-input">Connexion</s:a>  | <s:a action="about">&Agrave; propos</s:a>
+    <div class="col-md-2"></div>
+    <div class="col-md-10">
+        <div class="pull-right">
+            <s:if test="#session.user == null">
+                <s:a action="login-input">Connexion</s:a>
+            </s:if>
+            <s:else>
+                <s:a action="logout">Déconnexion</s:a>
+                |&nbsp;<s:a action="about">Mes commandes</s:a>
+            </s:else>
+            |&nbsp;<s:a action="about">&Agrave; propos</s:a>
+        </div>
     </div>
 </div>
 <div class="row">

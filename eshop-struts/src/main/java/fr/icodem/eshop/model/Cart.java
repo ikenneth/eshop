@@ -9,6 +9,7 @@ public class Cart implements Serializable {
     private List<CartItem> items;
     private double totalPrice;
     private int totalQuantity;
+    private boolean checkedOut;
 
     public void addItem(Product p, int quantity) {
         if (items == null) items = new ArrayList<>();
@@ -82,5 +83,13 @@ public class Cart implements Serializable {
 
     public void setTotalQuantity(int totalQuantity) {
         this.totalQuantity = totalQuantity;
+    }
+
+    public boolean isCheckedOut() {
+        return checkedOut;
+    }
+
+    public void setCheckedOut(boolean checkedOut) {
+        this.checkedOut = checkedOut;
     }
 }
