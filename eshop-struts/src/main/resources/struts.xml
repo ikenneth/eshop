@@ -83,6 +83,12 @@
         <action name="checkout" class="fr.icodem.eshop.struts.CartAction" method="checkout">
             <result>/cart.jsp</result>
         </action>
+        <action name="order-list" class="fr.icodem.eshop.struts.OrderListAction">
+            <result name="success">/order-list.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="actionName">login-input</param>
+            </result>
+        </action>
 
     </package>
 </struts>

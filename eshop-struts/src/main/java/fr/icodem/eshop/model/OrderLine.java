@@ -25,6 +25,10 @@ public class OrderLine implements Serializable {
     }
 
     // getters and setters
+    public double getPrice() {
+        return quantity * product.getPrice();
+    }
+
     public long getId() {
         return id;
     }
@@ -56,4 +60,5 @@ public class OrderLine implements Serializable {
     public void setOrder(Order order) {
         this.order = order;
     }
+
 }

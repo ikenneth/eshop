@@ -62,7 +62,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> findOrderByCustomer(String username) {
         Session session = sf.getCurrentSession();
-        String hql = "select o from Order o join fetch o.lines where o.customer.username = :u";
+        String hql = "select distinct o from Order o join fetch o.lines where o.customer.username = :u";
         Query query = session.createQuery(hql);
         query.setParameter("u", username);
         List<Order> orders = query.list();

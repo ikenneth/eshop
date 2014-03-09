@@ -14,7 +14,7 @@
             </s:if>
             <s:else>
                 <s:a action="logout">Déconnexion</s:a>
-                |&nbsp;<s:a action="about">Mes commandes</s:a>
+                |&nbsp;<s:a action="order-list">Mes commandes</s:a>
             </s:else>
             |&nbsp;<s:a action="about">&Agrave; propos</s:a>
         </div>

@@ -87,7 +87,26 @@
     margin-top: 10px;
 }
 
-/* login */
+/* order list */
+.order-list tbody > tr > td:first-child {
+    width: 80px;
+    text-align: left;
+}
+.order-list tbody > tr > td:first-child + td {
+    text-align: left;
+}
+.order-list tbody > tr > td + td + td {
+    text-align: right;
+}
+.order-list tbody > tr > td:last-child {
+    width: 120px;
+}
+.order-list > div + div + div {
+    text-align: right;
+    margin-top: 10px;
+}
+
+/* field error TODO used ? */
 .field-error {
     color: #a94442;
 }

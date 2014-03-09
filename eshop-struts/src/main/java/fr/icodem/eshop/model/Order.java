@@ -57,6 +57,14 @@ public class Order implements Serializable {
     }
 
     // getters and setters
+    public double getTotalPrice() {
+        double price = 0;
+        for (OrderLine line : lines) {
+            price += line.getPrice();
+        }
+        return price;
+    }
+
     public long getId() {
         return id;
     }
