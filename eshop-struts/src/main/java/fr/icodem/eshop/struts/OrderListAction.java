@@ -23,7 +23,7 @@ public class OrderListAction extends ActionSupport implements SessionAware {
     public String execute() throws Exception {
         Customer c = (Customer) session.get("user");
         if (c == null) {
-            addActionError("Vous devez vous identifier pour accéder à cette page");
+            addActionError(getText("login-required"));
         }
         else {
             orders = service.findOrderByCustomer(c.getUsername());

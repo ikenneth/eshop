@@ -5,14 +5,14 @@
 <div class="shopping-cart">
     <div class="row">
         <div class="col-md-12">
-            <h2>Votre panier</h2>
+            <h2><s:text name="cart.label"/></h2>
             <hr/>
         </div>
     </div>
     <s:if test="cart.isEmpty()">
         <div class="row cart-empty">
             <div class="col-md-12">
-                <h3>Le panier est vide</h3>
+                <h3><s:text name="cart.empty"/></h3>
             </div>
         </div>
     </s:if>
@@ -36,8 +36,8 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th colspan="2">Produit</th>
-                            <th colspan="3">Quantité</th>
+                            <th colspan="2"><s:text name="product.label"/></th>
+                            <th colspan="3"><s:text name="product.quantity"/></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -64,7 +64,7 @@
                                 <td><s:property value="quantity"/></td>
                                 <td>
                                     <s:a action="cart-remove-item" cssClass="btn btn-danger">
-                                        <span class="glyphicon glyphicon-trash"></span> Supprimer
+                                        <span class="glyphicon glyphicon-trash"></span> <s:text name="remove"/>
                                         <s:param name="productId"><s:property value="product.id"/></s:param>
                                     </s:a>
                                 </td>
@@ -82,7 +82,7 @@
 
         <div class="row">
             <div class="col-md-12">
-                <strong>Total :&nbsp;
+                <strong><s:text name="total-price"/> :&nbsp;
                     <s:text name="format.money">
                         <s:param name="value" value="cart.totalPrice"/>
                     </s:text>
@@ -94,12 +94,12 @@
                 <div class="col-md-12">
                     <s:if test="#session.user != null">
                         <s:a action="checkout" cssClass="btn btn-success">
-                            <span class="glyphicon glyphicon-check"></span> Passer la commande
+                            <span class="glyphicon glyphicon-check"></span> <s:text name="order.checkout"/>
                         </s:a>
                     </s:if>
                     <s:elseif test="!cart.checkedOut">
                         <a class="btn btn-success" disabled>
-                            <span class="glyphicon glyphicon-check"></span> Passer la commande
+                            <span class="glyphicon glyphicon-check"></span> <s:text name="order.checkout"/>
                         </a>
                     </s:elseif>
                 </div>

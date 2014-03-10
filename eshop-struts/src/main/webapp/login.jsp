@@ -2,17 +2,19 @@
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <%@ taglib prefix="page" uri="http://www.opensymphony.com/sitemesh/page" %>
 
-<h2>Authentification</h2>
+<h2><s:text name="authentication"/></h2>
 <hr/>
 
 <div class="row">
     <div class="col-md-6">
         <div class="well well-sm">
-            <h3>Inscription</h3>
-            <p>Vous pouvez vous incrire</p>
+            <h3><s:text name="register"/></h3>
+            <p><s:text name="you-can-register"/></p>
             <div class="row">
                 <div class="col-sm-12">
-                    <s:a action="register-input" cssClass="btn btn-primary pull-right">Créer un compte</s:a>
+                    <s:a action="register-input" cssClass="btn btn-primary pull-right">
+                        <s:text name="create-account"/>
+                    </s:a>
                 </div>
             </div>
         </div>
@@ -20,10 +22,10 @@
 
     <div class="col-md-6">
         <div class="well well-sm">
-            <h3>J'ai un compte</h3>
+            <h3><s:text name="i-have-account"/></h3>
             <s:form action="login" role="form">
                 <div class="form-group">
-                    <label for="emailInput" class="control-label">Votre email</label>
+                    <label for="emailInput" class="control-label"><s:text name="username"/></label>
                     <s:textfield name="username" id="emailInput" type="email" theme="simple"
                                  placeholder="Entrez votre mail" cssClass="form-control"/>
                     <s:fielderror fieldName="username" theme="eshop"/>
@@ -36,13 +38,14 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <button type="submit" class="btn btn-primary pull-right">Valider</button>
+                        <button type="submit" class="btn btn-primary pull-right">
+                            <s:text name="login"/>
+                        </button>
                     </div>
                 </div>
             </s:form>
         </div>
         <s:if test="hasActionErrors()">
-            <%--<div class="alert alert-danger"><s:actionerror theme="eshop"/></div>--%>
             <s:actionerror theme="eshop"/>
         </s:if>
     </div>

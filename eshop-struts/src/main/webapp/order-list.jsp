@@ -5,7 +5,7 @@
 <div class="order-list">
     <div class="row">
         <div class="col-md-12">
-            <h2>Vos commandes</h2>
+            <h2><s:text name="your-orders"/></h2>
             <hr/>
         </div>
     </div>
@@ -19,7 +19,7 @@
     <s:if test="#session.user != null && (orders == null || orders.size() == 0)">
         <div class="row cart-empty">
             <div class="col-md-12">
-                <h3>Vous n'avez pas de commandes enregistrées</h3>
+                <h3><s:text name="no-order"/></h3>
             </div>
         </div>
     </s:if>
@@ -73,7 +73,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <strong>Total :&nbsp;
+                    <strong><s:text name="total-price"/> :&nbsp;
                         <s:text name="format.money">
                             <s:param name="value" value="totalPrice"/>
                         </s:text>

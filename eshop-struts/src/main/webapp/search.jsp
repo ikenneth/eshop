@@ -5,7 +5,7 @@
 <s:form action="product-list">
     <div class="input-group">
         <s:textfield name="keyword" cssClass="form-control" theme="simple"
-                     placeholder="Rechercher" type="search"/>
+                     placeholder="%{getText('search')}" type="search"/>
         <span class="input-group-btn">
             <button type="submit" class="btn btn-default">
                 <span class="glyphicon glyphicon-search"></span>

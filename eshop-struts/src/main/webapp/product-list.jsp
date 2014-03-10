@@ -1,18 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 
-
-
-<%--
-<s:select name="familyId" list="families" listKey="id" listValue="name"
-          headerValue="Select a family..." value="%{families.{id}}"/>
-
-<s:combobox list="families" label="Famille" name="familyId" headerKey="-1" headerValue="XXX" emptyOption="true" value="2"
-            listKey="id" listValue="name"/>
-
-<s:radio list="{'male', 'female'}" label="Gender" name="gender"/>
---%>
-
 <s:iterator value="products">
     <div class="row product-list">
         <div class="col-sm-2">

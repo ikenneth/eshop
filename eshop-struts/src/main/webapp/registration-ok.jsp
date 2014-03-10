@@ -11,7 +11,9 @@
     </div>
 <div class="row">
     <div class="col-md-12">
-        <s:a action="login-input" cssClass="btn btn-primary pull-right">Se connecter</s:a>
+        <s:a action="login-input" cssClass="btn btn-primary pull-right">
+            <s:text name="login"/>
+        </s:a>
     </div>
 </div>
 

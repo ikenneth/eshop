@@ -37,7 +37,7 @@ public class CartAction extends ActionSupport implements SessionAware, Preparabl
         cart = (Cart) session.get("cart");
 
         if (!cart.isEmpty() && session.get("user") == null) {
-            addActionMessage("Vous devez vous connecter pour passer la commande");
+            addActionMessage(getText("login-required"));
         }
     }
 
@@ -59,13 +59,13 @@ public class CartAction extends ActionSupport implements SessionAware, Preparabl
             orderService.createOrder(cart, customer);
 
             session.remove("cart");
-            addActionMessage("Your order has been successfully saved");
+            addActionMessage(getText("order-saved"));
 
             session.put("cart", new Cart());// otherwise, cart is not properly displayed in header
             return SUCCESS;
         } catch (Exception e) {
             e.printStackTrace();
-            addActionError("An error occured while saving your order");
+            addActionError(getText("order-saving-error"));
             return SUCCESS;
         }
     }

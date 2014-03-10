@@ -28,7 +28,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
             session.put("user", u);
             return SUCCESS;
         } catch (AuthenticationException ae) {
-            addActionError("Authentication failed");
+            addActionError(getText("authentication-failed"));
             return LOGIN;
         }
     }
@@ -55,7 +55,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
         return username;
     }
 
-    @RequiredStringValidator(message = "You must enter a username")
+    @RequiredStringValidator(key = "username-error-message")
     public void setUsername(String username) {
         this.username = username;
     }
@@ -64,7 +64,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
         return password;
     }
 
-    @RequiredStringValidator(message = "You must enter a password")
+    @RequiredStringValidator(key = "password-error-message")
     public void setPassword(String password) {
         this.password = password;
     }

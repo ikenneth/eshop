@@ -24,7 +24,7 @@ public class RegisterAction extends ActionSupport implements Preparable {
         try {
             service.register(registration);
         } catch (RegistrationException re) {
-            addFieldError("registration.username", "This username is already used");
+            addFieldError("registration.username", getText("user-already-used"));
             return INPUT;
         }
 

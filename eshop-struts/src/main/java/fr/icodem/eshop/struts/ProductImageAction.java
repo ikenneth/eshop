@@ -9,16 +9,19 @@ import javax.annotation.Resource;
 public class ProductImageAction extends ActionSupport {
     private int imageId;
 
+    private byte[] content;
+
     @Resource
     private CatalogService service;
 
     public byte[] getContent() {
-        ProductImage image = service.findProductImage(imageId);
-        return image.getContent();
+        return content;
     }
 
     @Override
     public String execute() {
+        ProductImage image = service.findProductImage(imageId);
+        content = image.getContent();
         return SUCCESS;
     }
 

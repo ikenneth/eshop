@@ -8,58 +8,58 @@
 <validators>
     <field name="registration.username">
         <field-validator type="requiredstring">
-            <message>Username is required</message>
+            <message key="username.required"/>
         </field-validator>
         <field-validator type="forbidden">
             <param name="forbiddenStrings">root,admin,administrator</param>
-            <message>You cannot use this username</message>
+            <message key="username.forbidden"/>
         </field-validator>
     </field>
     <field name="registration.password1">
         <field-validator type="requiredstring">
-            <message>Password is required</message>
+            <message key="password.required"/>
         </field-validator>
         <field-validator type="stringlength">
             <param name="minLength">4</param>
-            <message>Enter at least 4 characters</message>
+            <message key="password.minlength"/>
         </field-validator>
         <field-validator type="regex">
             <param name="regex">[A-Za-z0-0]+</param>
-            <message>Alphanumeric only</message>
+            <message key="password.alphanumeric"/>
         </field-validator>
     </field>
     <field name="registration.password2">
         <field-validator type="requiredstring">
-            <message>Confirm password is required</message>
+            <message key="confirm-password.required"/>
         </field-validator>
         <field-validator type="fieldexpression">
             <param name="expression">(registration.password1 == registration.password2)</param>
-            <message>Must be the same as password</message>
+            <message key="confirm-password.same"/>
         </field-validator>
     </field>
     <field name="registration.firstName">
         <field-validator type="requiredstring">
-            <message>First name is required</message>
+            <message key="firstname.required"/>
         </field-validator>
     </field>
     <field name="registration.lastName">
         <field-validator type="requiredstring">
-            <message>Last name is required</message>
+            <message key="lastname.required"/>
         </field-validator>
     </field>
     <field name="registration.street">
         <field-validator type="requiredstring">
-            <message>First name is required</message>
+            <message key="street.required"/>
         </field-validator>
     </field>
     <field name="registration.city">
         <field-validator type="requiredstring">
-            <message>Street is required</message>
+            <message key="city.required"/>
         </field-validator>
     </field>
     <field name="registration.postCode">
         <field-validator type="requiredstring">
-            <message>Post code is required</message>
+            <message key="postcode.required"/>
         </field-validator>
     </field>
 </validators>

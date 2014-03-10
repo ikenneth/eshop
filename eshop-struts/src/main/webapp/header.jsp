@@ -10,13 +10,13 @@
     <div class="col-md-10">
         <div class="pull-right">
             <s:if test="#session.user == null">
-                <s:a action="login-input">Connexion</s:a>
+                <s:a action="login-input"><s:text name="login"/></s:a>
             </s:if>
             <s:else>
-                <s:a action="logout">Déconnexion</s:a>
-                |&nbsp;<s:a action="order-list">Mes commandes</s:a>
+                <s:a action="logout"><s:text name="logout"/></s:a>
+                |&nbsp;<s:a action="order-list"><s:text name="my-orders"/></s:a>
             </s:else>
-            |&nbsp;<s:a action="about">&Agrave; propos</s:a>
+            |&nbsp;<s:a action="about"><s:text name="about"/></s:a>
         </div>
     </div>
 </div>
@@ -29,25 +29,25 @@
         <ul class="nav nav-pills">
             <li class="${productType == 'Product'?'active':''}">
                 <s:a action="product-list">
-                    Tout
+                    <s:text name="all"/>
                     <s:param name="productType">Product</s:param>
                 </s:a>
             </li>
             <li class="${productType == 'Book'?'active':''}">
                 <s:a action="product-list">
-                    Livres
+                    <s:text name="book"/>
                     <s:param name="productType">Book</s:param>
                 </s:a>
             </li>
             <li class="${productType == 'Movie'?'active':''}">
                 <s:a action="product-list">
-                    Films
+                    <s:text name="movie"/>
                     <s:param name="productType">Movie</s:param>
                 </s:a>
             </li>
             <li class="${productType == 'Album'?'active':''}">
                 <s:a action="product-list">
-                    Musique
+                    <s:text name="album"/>
                     <s:param name="productType">Album</s:param>
                 </s:a>
             </li>
