@@ -61,7 +61,7 @@
             <img src="images/basket.png" width="40"/>
         </s:a>
         <s:a action="cart-input">
-            Panier
+            <s:text name="cart"/>
             <s:text name="format.money">
                 <s:param name="value" value="#session.cart.totalPrice"/>
             </s:text>
