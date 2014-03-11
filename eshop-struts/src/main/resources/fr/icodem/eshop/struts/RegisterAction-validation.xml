@@ -24,7 +24,7 @@
             <message key="password.minlength"/>
         </field-validator>
         <field-validator type="regex">
-            <param name="regex">[A-Za-z0-0]+</param>
+            <param name="regex">[A-Za-z0-9]+</param>
             <message key="password.alphanumeric"/>
         </field-validator>
     </field>
