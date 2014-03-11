@@ -1,6 +1,7 @@
 package fr.icodem.eshop.service;
 
 import fr.icodem.eshop.model.ItemCounter;
+import fr.icodem.eshop.model.ItemCounterId;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,18 @@ public class SystemServiceImpl implements SystemService {
     private SessionFactory sf;
 
     @Override @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public int getNextItemCounterValue(String item, String info) {
+    public int getNextItemCounterValue(String item, String subset, String info) {
+        // check subset
+        if (subset == null) subset = "";
+
         // read counter from data store
         Session session = sf.getCurrentSession();
-        ItemCounter counter = (ItemCounter)session.get(ItemCounter.class, item);
+        ItemCounterId id = new ItemCounterId(item, subset);
+        ItemCounter counter = (ItemCounter)session.get(ItemCounter.class, id);
         if (counter == null) {
             counter = new ItemCounter();
-            counter.setItem(item);
+            counter.setId(id);
+            counter.setInfo(info);
             counter.setNextValue(1);
             session.save(counter);
         }

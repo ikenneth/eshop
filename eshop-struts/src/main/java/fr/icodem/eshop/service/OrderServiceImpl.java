@@ -46,7 +46,9 @@ public class OrderServiceImpl implements OrderService {
         }
 
         // generate order number
-        int counter = systemService.getNextItemCounterValue("Order", "");
+        String year = Integer.toString(Calendar.getInstance().get(Calendar.YEAR));
+        String info = "Counter for order numbers for year " + year;
+        int counter = systemService.getNextItemCounterValue("OrderNumber", year, info);
         String number =
                 MessageFormat.format("CDE{0,date,yy}-{1,number,0000}",
                         Calendar.getInstance().getTime(), counter);

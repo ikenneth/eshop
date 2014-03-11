@@ -1,14 +1,11 @@
 package fr.icodem.eshop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity @Table(name = "item_counter")
 public class ItemCounter {
-    @Id
-    private String item;
+    @EmbeddedId
+    private ItemCounterId id;
 
     private String info;
 
@@ -22,19 +19,19 @@ public class ItemCounter {
     @Override
     public String toString() {
         return "ItemCounter{" +
-                "item='" + item + '\'' +
+                "id=" + id +
                 ", info='" + info + '\'' +
                 ", nextValue=" + nextValue +
                 '}';
     }
 
     // getters and setters
-    public String getItem() {
-        return item;
+    public ItemCounterId getId() {
+        return id;
     }
 
-    public void setItem(String item) {
-        this.item = item;
+    public void setId(ItemCounterId id) {
+        this.id = id;
     }
 
     public String getInfo() {
