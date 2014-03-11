@@ -63,10 +63,12 @@
                                 </td>
                                 <td><s:property value="quantity"/></td>
                                 <td>
-                                    <s:a action="cart-remove-item" cssClass="btn btn-danger">
-                                        <span class="glyphicon glyphicon-trash"></span> <s:text name="remove"/>
-                                        <s:param name="productId"><s:property value="product.id"/></s:param>
-                                    </s:a>
+                                    <s:if test="!cart.checkedOut">
+                                        <s:a action="cart-remove-item" cssClass="btn btn-danger">
+                                            <span class="glyphicon glyphicon-trash"></span> <s:text name="remove"/>
+                                            <s:param name="productId"><s:property value="product.id"/></s:param>
+                                        </s:a>
+                                    </s:if>
                                 </td>
                                 <td>
                                     <s:text name="format.money">
