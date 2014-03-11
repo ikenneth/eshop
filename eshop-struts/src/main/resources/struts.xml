@@ -10,6 +10,7 @@
 
     <package name="eshop" extends="struts-default">
 
+
         <result-types>
             <result-type name="productImage" class="fr.icodem.eshop.struts.ProductImageResult"/>
         </result-types>
@@ -24,6 +25,13 @@
         </interceptors>
 
         <default-interceptor-ref name="eshopStack"/>
+
+        <global-results>
+            <result name="error">error.jsp</result>
+        </global-results>
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.Exception" result="error"/>
+        </global-exception-mappings>
 
         <action name="index">
             <result>/index.jsp</result>
