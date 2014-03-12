@@ -17,10 +17,12 @@
     <div class="alert alert-danger">
         <strong><s:text name="error.title"/></strong> <s:text name="error.message"/>
 
-        <hr>
-        <div class="well">
-            <s:property value="exceptionStack"/>
-            <s:property value="exception.message"/>
-        </div>
+        <s:debug>
+            <hr>
+            <div class="well">
+                <s:property value="exceptionStack"/>
+                <s:property value="exception.message"/>
+            </div>
+        </s:debug>
     </div>
 </body>
