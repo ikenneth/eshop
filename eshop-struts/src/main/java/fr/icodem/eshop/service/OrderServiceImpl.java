@@ -40,8 +40,7 @@ public class OrderServiceImpl implements OrderService {
         order.setStatus(OrderStatus.Pending);
 
         for (CartItem item : cart.getItems()) {
-            //TODO replace with load ==> pb with proxy javassist
-            Product p = (Product) session.get(Product.class, item.getProduct().getId());
+            Product p = (Product) session.load(Product.class, item.getProduct().getId());
             order.addLine(p, item.getQuantity());
         }
 

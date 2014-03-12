@@ -15,7 +15,7 @@
         <sitemesh.version>2.4.2</sitemesh.version>
         <slf4j.version>1.7.6</slf4j.version>
         <!--<hibernate.version>4.3.2.Final</hibernate.version>-->
-        <hibernate.version>4.2.8.Final</hibernate.version>
+        <hibernate.version>4.3.4.Final</hibernate.version>
         <spring.version>4.0.2.RELEASE</spring.version>
     </properties>
 
@@ -53,6 +53,12 @@
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-core</artifactId>
             <version>${struts.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javassist</groupId>
+                    <artifactId>javassist</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>opensymphony</groupId>
