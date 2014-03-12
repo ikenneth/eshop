@@ -16,12 +16,12 @@
         </result-types>
 
         <interceptors>
-            <interceptor name="eshop" class="fr.icodem.eshop.struts.EShopInterceptor"/>
+            <interceptor name="loadData" class="fr.icodem.eshop.struts.LoadDataInterceptor"/>
             <interceptor name="breadcrumb" class="fr.icodem.eshop.struts.BreadcrumbInterceptor"/>
 
             <interceptor-stack name="eshopStack">
                 <interceptor-ref name="defaultStack"/>
-                <interceptor-ref name="eshop"/>
+                <interceptor-ref name="loadData"/>
                 <interceptor-ref name="breadcrumb"/>
             </interceptor-stack>
         </interceptors>

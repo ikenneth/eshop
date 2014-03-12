@@ -11,7 +11,7 @@ import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 
-public class EShopInterceptor extends AbstractInterceptor {
+public class LoadDataInterceptor extends AbstractInterceptor {
 
     @Resource
     private CatalogService service;
