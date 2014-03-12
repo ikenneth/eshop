@@ -14,7 +14,7 @@
         <slf4j.dist>1.7.5</slf4j.dist>
         <log4j.dist>1.2.16</log4j.dist>
         <guice.dist>3.0</guice.dist>
-        <hibernate.dist>4.3.0.Final</hibernate.dist>
+        <hibernate.dist>4.2.8.Final</hibernate.dist>
         <jersey.dist>1.18</jersey.dist>
         <jackson.dist>1.9.13</jackson.dist>
         <shiro.dist>1.2.2</shiro.dist>
