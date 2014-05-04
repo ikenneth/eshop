@@ -9,11 +9,18 @@
     <div class="col-md-2"></div>
     <div class="col-md-10">
         <div class="pull-right">
+            <s:if test="#session.user != null">
+                <s:text name="welcome"/>&nbsp;
+                <s:text name="#session.user.firstName + ' ' + #session.user.lastName"/> ! -&nbsp;
+            </s:if>
+
             <s:if test="#session.user == null">
                 <s:a action="login-input"><s:text name="login"/></s:a>
             </s:if>
             <s:else>
-                <s:a action="logout"><s:text name="logout"/></s:a>
+                <s:a action="logout">
+                    <s:text name="logout"/>
+                </s:a>
                 |&nbsp;<s:a action="order-list"><s:text name="my-orders"/></s:a>
             </s:else>
             |&nbsp;<s:a action="about"><s:text name="about"/></s:a>
