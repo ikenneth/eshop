@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping package="fr.icodem.eshop.model">
+	<class name="User" table="user_data">
+		<id name="username">
+			<generator class="assigned"/>
+		</id>
+        <discriminator column="type" type="string"/>
+		<property name="password"/>
+        <subclass name="Customer" discriminator-value="C">
+            <property name="firstName" column="first_name"/>
+            <property name="lastName" column="last_name"/>
+            <component name="address">
+                <property name="street"/>
+                <property name="postCode" column="post_code"/>
+                <property name="city"/>
+                <property name="country"/>
+            </component>
+        </subclass>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping package="fr.icodem.eshop.model">
+	<class name="Product">
+		<id name="id">
+			<generator class="identity"/>
+		</id>
+		<property name="name"/>
+		<property name="description" />
+		<property name="price" />
+        <many-to-one name="family" column="family_id"/>
+        <many-to-one name="image" column="image_id"/>
+        <joined-subclass name="Book">
+            <key column="id"/>
+            <property name="releaseDate" column="release_date" type="date"/>
+            <property name="isbn"/>
+            <property name="language"/>
+            <property name="pages"/>
+            <bag name="authors" table="book_author">
+                <key column="book_id"/>
+                <many-to-many class="Figure" column="author_id"/>
+            </bag>
+        </joined-subclass>
+        <joined-subclass name="Movie">
+            <key column="id"/>
+            <property name="releaseDate" column="release_date" type="date"/>
+            <property name="length"/>
+            <bag name="actors" table="movie_actor">
+                <key column="movie_id"/>
+                <many-to-many class="Figure" column="actor_id"/>
+            </bag>
+            <bag name="languages" table="movie_language">
+                <key column="movie_id"/>
+                <element type="string" column="language"/>
+            </bag>
+        </joined-subclass>
+        <joined-subclass name="Album">
+            <key column="id"/>
+            <property name="releaseDate" column="release_date" type="date"/>
+            <property name="length"/>
+            <bag name="artists" table="album_artist">
+                <key column="album_id"/>
+                <many-to-many class="Figure" column="artist_id"/>
+            </bag>
+        </joined-subclass>
+	</class>
+</hibernate-mapping>

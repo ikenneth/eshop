@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping package="fr.icodem.eshop.model">
+	<class name="ItemCounter" table="item_counter">
+		<composite-id name="id" class="ItemCounterId">
+			<key-property name="item"/>
+			<key-property name="subset"/>
+		</composite-id>
+		<property name="info"/>
+		<property name="nextValue" column="next_value"/>
+	</class>
+</hibernate-mapping>

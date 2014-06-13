@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+	
+<hibernate-mapping package="fr.icodem.eshop.model">
+	<class name="Order" table="purchase_order">
+		<id name="id">
+			<generator class="identity"/>
+		</id>
+		<property name="date" column="order_date"/>
+		<property name="orderNumber" column="order_number"/>
+		<property name="trackingNumber" column="tracking_number"/>
+        <property name="status">
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">fr.icodem.eshop.model.OrderStatus</param>
+                <param name="type">12</param>
+            </type>
+        </property>
+        <many-to-one name="customer" column="customer_id"/>
+        <list name="lines" cascade="all" inverse="true">
+            <key column="order_id"/>
+            <list-index column="position"/>
+            <one-to-many class="OrderLine"/>
+        </list>
+	</class>
+</hibernate-mapping>
