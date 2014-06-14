@@ -1,19 +1,11 @@
 package fr.icodem.eshop.model;
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Embedded;
-import javax.persistence.Entity;
 import java.io.Serializable;
 
-@Entity @DiscriminatorValue("C")
 public class Customer extends User implements Serializable {
-    @Column(name = "first_name")
     private String firstName;
-    @Column(name = "last_name")
     private String lastName;
 
-    @Embedded
     private Address address;
 
     @Override

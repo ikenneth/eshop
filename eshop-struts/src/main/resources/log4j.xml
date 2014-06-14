@@ -13,19 +13,10 @@
         <level value="OFF"/>
     </logger>
     <logger name="org.hibernate">
-        <level value="OFF"/>
+        <level value="INFO"/>
     </logger>
-    <logger name="org.hibernate.cache">
-        <level value="OFF"/>
-    </logger>
-    <logger name="net.sf">
-        <level value="OFF"/>
-    </logger>
-    <logger name="com.infotel">
-        <level value="DEBUG"/>
-    </logger>
-    <logger name="org.springframework.ws">
-        <level value="DEBUG"/>
+    <logger name="org.springframework">
+        <level value="INFO"/>
     </logger>
 
     <root>

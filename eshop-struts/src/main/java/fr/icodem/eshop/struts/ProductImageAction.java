@@ -11,8 +11,12 @@ public class ProductImageAction extends ActionSupport {
 
     private byte[] content;
 
-    @Resource
     private CatalogService service;
+
+    // setter for injection
+    public void setCatalogService(CatalogService service) {
+        this.service = service;
+    }
 
     public byte[] getContent() {
         return content;

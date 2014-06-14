@@ -4,18 +4,17 @@ import fr.icodem.eshop.model.ItemCounter;
 import fr.icodem.eshop.model.ItemCounterId;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
-@Service @Transactional
 public class SystemServiceImpl implements SystemService {
 
-    @Autowired
     private SessionFactory sf;
 
-    @Override @Transactional(propagation = Propagation.REQUIRES_NEW)
+    // setter for injection
+    public void setSf(SessionFactory sf) {
+        this.sf = sf;
+    }
+
+    @Override
     public int getNextItemCounterValue(String item, String subset, String info) {
         // check subset
         if (subset == null) subset = "";

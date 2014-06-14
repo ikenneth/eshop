@@ -1,17 +1,10 @@
 package fr.icodem.eshop.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.Table;
 import java.io.Serializable;
 
-@Entity @Table(name = "product_image")
 public class ProductImage implements Serializable {
-    @Id
     private int id;
 
-    @Lob
     private byte[] content;
 
     @Override

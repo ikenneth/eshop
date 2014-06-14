@@ -12,8 +12,12 @@ import java.util.Map;
 
 public class OrderListAction extends ActionSupport implements SessionAware {
 
-    @Resource
     private OrderService service;
+
+    // setter for injection
+    public void setOrderService(OrderService service) {
+        this.service = service;
+    }
 
     private Map<String, Object> session;
 

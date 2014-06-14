@@ -1,9 +1,7 @@
 package fr.icodem.eshop.model;
 
-import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-@Embeddable
 public class ItemCounterId implements Serializable {
     private String item;
     private String subset;

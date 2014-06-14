@@ -1,14 +1,9 @@
 package fr.icodem.eshop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import java.io.Serializable;
 
-@Embeddable
 public class Address implements Serializable {
     private String street;
-
-    @Column(name = "post_code")
     private String postCode;
     private String city;
     private String country;

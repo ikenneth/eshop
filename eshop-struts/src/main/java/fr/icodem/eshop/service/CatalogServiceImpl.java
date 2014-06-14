@@ -5,18 +5,17 @@ import org.hibernate.Hibernate;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 
-@Service @Transactional
 public class CatalogServiceImpl implements CatalogService {
 
-    @Autowired
     private SessionFactory sf;
+
+    // setter for injection
+    public void setSf(SessionFactory sf) {
+        this.sf = sf;
+    }
 
     @Override
     public List<ProductFamily> findFamilies() {

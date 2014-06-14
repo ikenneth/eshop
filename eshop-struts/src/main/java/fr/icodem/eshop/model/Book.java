@@ -1,23 +1,16 @@
 package fr.icodem.eshop.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Entity @PrimaryKeyJoinColumn(name = "id")
 public class Book extends Product implements Serializable {
-    @Temporal(TemporalType.DATE) @Column(name = "release_date")
     private Date releaseDate;
 
     private String isbn;
     private String language;
     private int pages;
 
-    @ManyToMany
-    @JoinTable(name = "book_author",
-            joinColumns = @JoinColumn(name = "book_id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id"))
     private List<Figure> authors;
 
     @Override

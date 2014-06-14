@@ -18,7 +18,6 @@
         <interceptors>
             <interceptor name="loadData" class="fr.icodem.eshop.struts.LoadDataInterceptor"/>
             <interceptor name="breadcrumb" class="fr.icodem.eshop.struts.BreadcrumbInterceptor"/>
-
             <interceptor-stack name="eshopStack">
                 <interceptor-ref name="defaultStack"/>
                 <interceptor-ref name="loadData"/>

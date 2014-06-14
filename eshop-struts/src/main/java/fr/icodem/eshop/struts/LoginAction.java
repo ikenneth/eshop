@@ -13,8 +13,12 @@ import java.util.Map;
 
 public class LoginAction extends ActionSupport implements SessionAware {
 
-    @Resource
     private SecurityService service;
+
+    // setter for injection
+    public void setSecurityService(SecurityService service) {
+        this.service = service;
+    }
 
     private String username;
     private String password;

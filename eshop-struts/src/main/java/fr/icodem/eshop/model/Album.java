@@ -1,20 +1,13 @@
 package fr.icodem.eshop.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Entity @PrimaryKeyJoinColumn(name = "id")
 public class Album extends Product implements Serializable {
-    @Temporal(TemporalType.DATE) @Column(name = "release_date")
     private Date releaseDate;
     private int length;
 
-    @ManyToMany
-    @JoinTable(name = "album_artist",
-            joinColumns = @JoinColumn(name = "album_id"),
-            inverseJoinColumns = @JoinColumn(name = "artist_id"))
     private List<Figure> artists;
 
     @Override

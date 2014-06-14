@@ -8,15 +8,15 @@ import fr.icodem.eshop.model.Registration;
 import fr.icodem.eshop.model.User;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-@Service @Transactional
 public class SecurityServiceImpl implements SecurityService {
 
-    @Autowired
     private SessionFactory sf;
+
+    // setters for injection
+    public void setSf(SessionFactory sf) {
+        this.sf = sf;
+    }
 
     @Override
     public User authenticate(String username, String password) throws AuthenticationException {

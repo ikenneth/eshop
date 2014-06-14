@@ -20,8 +20,12 @@ public class ProductListAction extends ActionSupport
     private List<Product> products;
     private Map<String, Object> session;
 
-    @Resource
     private CatalogService service;
+
+    // setter for injection
+    public void setCatalogService(CatalogService service) {
+        this.service = service;
+    }
 
     @Override
     public void prepare() throws Exception {

@@ -13,8 +13,12 @@ import java.util.Map;
 
 public class LoadDataInterceptor extends AbstractInterceptor {
 
-    @Resource
     private CatalogService service;
+
+    // setter for injection
+    public void setCatalogService(CatalogService service) {
+        this.service = service;
+    }
 
     @Override
     public String intercept(ActionInvocation invocation) throws Exception {

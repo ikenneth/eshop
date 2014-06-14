@@ -12,4 +12,8 @@
     <!-- Data source -->
     <jee:jndi-lookup id="dataSource" jndi-name="jdbc/EShopDS"/>
 
+    <bean id="loadData" class="fr.icodem.eshop.struts.LoadDataInterceptor">
+        <property name="catalogService" ref="catalogService"/>
+    </bean>
+
 </beans>

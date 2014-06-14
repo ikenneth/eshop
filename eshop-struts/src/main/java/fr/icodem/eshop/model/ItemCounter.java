@@ -1,15 +1,9 @@
 package fr.icodem.eshop.model;
 
-import javax.persistence.*;
-
-@Entity @Table(name = "item_counter")
 public class ItemCounter {
-    @EmbeddedId
     private ItemCounterId id;
 
     private String info;
-
-    @Column(name = "next_value")
     private int nextValue;
 
     public void increment() {

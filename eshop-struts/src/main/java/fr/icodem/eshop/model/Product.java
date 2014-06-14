@@ -1,20 +1,15 @@
 package fr.icodem.eshop.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 
-@Entity @Inheritance(strategy = InheritanceType.JOINED)
 public class Product implements Serializable {
-    @Id
     protected int id;
     protected String name;
     protected String description;
     protected double price;
 
-    @ManyToOne @JoinColumn(name = "family_id")
     protected ProductFamily family;
 
-    @ManyToOne @JoinColumn(name = "image_id")
     protected ProductImage image;
 
     // getters and setters

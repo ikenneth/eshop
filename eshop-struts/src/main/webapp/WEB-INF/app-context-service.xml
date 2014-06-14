@@ -1,38 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                            http://www.springframework.org/schema/beans/spring-beans.xsd
-                           http://www.springframework.org/schema/context
-                           http://www.springframework.org/schema/context/spring-context.xsd
                            http://www.springframework.org/schema/tx
-                           http://www.springframework.org/schema/tx/spring-tx.xsd">
+                           http://www.springframework.org/schema/tx/spring-tx.xsd
+                           http://www.springframework.org/schema/aop
+                           http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-    <context:component-scan base-package="fr.icodem.eshop"/>
+    <!-- Business beans -->
+    <bean id="catalogService" class="fr.icodem.eshop.service.CatalogServiceImpl">
+        <property name="sf" ref="sessionFactory"/>
+    </bean>
+    <bean id="orderService" class="fr.icodem.eshop.service.OrderServiceImpl">
+        <property name="sf" ref="sessionFactory"/>
+        <property name="systemService" ref="systemService"/>
+    </bean>
+    <bean id="securityService" class="fr.icodem.eshop.service.SecurityServiceImpl">
+        <property name="sf" ref="sessionFactory"/>
+    </bean>
+    <bean id="systemService" class="fr.icodem.eshop.service.SystemServiceImpl">
+        <property name="sf" ref="sessionFactory"/>
+    </bean>
 
     <!-- Hibernate -->
     <bean id="sessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
-        <property name="annotatedClasses">
+        <property name="mappingLocations" value="classpath:fr/icodem/eshop/model/*.hbm.xml"/>
+        <!--
+        <property name="mappingResources">
             <list>
-                <value>fr.icodem.eshop.model.Product</value>
-                <value>fr.icodem.eshop.model.Book</value>
-                <value>fr.icodem.eshop.model.Movie</value>
-                <value>fr.icodem.eshop.model.Album</value>
-                <value>fr.icodem.eshop.model.ProductFamily</value>
-                <value>fr.icodem.eshop.model.ProductImage</value>
-                <value>fr.icodem.eshop.model.Figure</value>
-                <value>fr.icodem.eshop.model.Customer</value>
-                <value>fr.icodem.eshop.model.User</value>
-                <value>fr.icodem.eshop.model.Address</value>
-                <value>fr.icodem.eshop.model.Order</value>
-                <value>fr.icodem.eshop.model.OrderLine</value>
-                <value>fr.icodem.eshop.model.ItemCounter</value>
+                <value>fr/icodem/eshop/model/Product.hbm.xml</value>
+                <value>fr/icodem/eshop/model/ProductFamily.hbm.xml</value>
+                <value>fr/icodem/eshop/model/ProductImage.hbm.xml</value>
+                <value>fr/icodem/eshop/model/Figure.hbm.xml</value>
+                <value>fr/icodem/eshop/model/User.hbm.xml</value>
+                <value>fr/icodem/eshop/model/Order.hbm.xml</value>
+                <value>fr/icodem/eshop/model/OrderLine.hbm.xml</value>
+                <value>fr/icodem/eshop/model/ItemCounter.hbm.xml</value>
             </list>
         </property>
+        -->
         <property name="hibernateProperties">
             <props>
                 <prop key="hibernate.dialect">org.hibernate.dialect.MySQLInnoDBDialect</prop>
@@ -47,5 +58,22 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
     <tx:annotation-driven transaction-manager="txManager"/>
+
+    <!-- Transaction rules -->
+    <tx:advice id="txAdvice" transaction-manager="txManager">
+        <tx:attributes>
+            <tx:method name="create*" propagation="REQUIRED"/>
+            <tx:method name="register" propagation="REQUIRED"/>
+            <tx:method name="getNextItemCounterValue" propagation="REQUIRES_NEW"/>
+            <tx:method name="*" propagation="REQUIRED" read-only="true"/>
+        </tx:attributes>
+    </tx:advice>
+
+    <!-- AOP proxy -->
+    <aop:config>
+        <aop:pointcut id="serviceMethods"
+                      expression="execution(* fr.icodem.eshop.service.*Service.*(..))" />
+        <aop:advisor advice-ref="txAdvice" pointcut-ref="serviceMethods"/>
+    </aop:config>
 
 </beans>

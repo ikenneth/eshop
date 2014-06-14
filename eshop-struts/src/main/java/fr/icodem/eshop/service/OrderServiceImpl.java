@@ -5,23 +5,24 @@ import fr.icodem.eshop.model.*;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.text.MessageFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-@Service @Transactional
 public class OrderServiceImpl implements OrderService {
 
-    @Autowired
     private SessionFactory sf;
-
-    @Autowired
     private SystemService systemService;
+
+    // setters for injection
+    public void setSf(SessionFactory sf) {
+        this.sf = sf;
+    }
+    public void setSystemService(SystemService systemService) {
+        this.systemService = systemService;
+    }
 
     @Override
     public void createOrder(Cart cart, Customer customer) throws OrderException {
@@ -63,7 +64,9 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> findOrderByCustomer(String username) {
         Session session = sf.getCurrentSession();
-        String hql = "select distinct o from Order o join fetch o.lines where o.customer.username = :u";
+        String hql = "select distinct o from Order o " +
+                "join fetch o.lines l join fetch l.product " +
+                "where o.customer.username = :u";
         Query query = session.createQuery(hql);
         query.setParameter("u", username);
         List<Order> orders = query.list();

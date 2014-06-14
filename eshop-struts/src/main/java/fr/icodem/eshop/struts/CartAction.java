@@ -14,11 +14,16 @@ import java.util.Map;
 
 public class CartAction extends ActionSupport implements SessionAware, Preparable {
 
-    @Resource
     private CatalogService catalogService;
-
-    @Resource
     private OrderService orderService;
+
+    // setters for injection
+    public void setCatalogService(CatalogService service) {
+        this.catalogService = service;
+    }
+    public void setOrderService(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     private Map<String, Object> session;
 

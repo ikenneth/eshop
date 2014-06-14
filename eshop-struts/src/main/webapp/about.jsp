@@ -8,8 +8,8 @@
 <ul>
     <li>Struts 2</li>
     <li>Sitemesh</li>
-    <li>Hibernate</li>
-    <li>Spring Framework</li>
+    <li>Hibernate (XML)</li>
+    <li>Spring Framework (XML)</li>
 </ul>
 
 <br>

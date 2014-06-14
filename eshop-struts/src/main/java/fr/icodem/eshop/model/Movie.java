@@ -1,32 +1,22 @@
 package fr.icodem.eshop.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-@Entity @PrimaryKeyJoinColumn(name = "id")
 public class Movie extends Product implements Serializable {
-    @Temporal(TemporalType.DATE) @Column(name = "release_date")
     private Date releaseDate;
     private int length;
 
-    @ManyToMany
-    @JoinTable(name = "movie_actor",
-            joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "actor_id"))
     private List<Figure> actors;
 
-    @ManyToOne
-    @JoinTable(name = "movie_director",
-            joinColumns = @JoinColumn(name = "movie_id"),
-            inverseJoinColumns = @JoinColumn(name = "director_id"))
+    // TODO add Hibernate mapping Movie.director
+//    @ManyToOne
+//    @JoinTable(name = "movie_director",
+//            joinColumns = @JoinColumn(name = "movie_id"),
+//            inverseJoinColumns = @JoinColumn(name = "director_id"))
     private Figure director;
 
-    @ElementCollection
-    @CollectionTable(name = "movie_language",
-            joinColumns = @JoinColumn(name = "movie_id"))
-    @Column(name = "language")
     private List<String> languages;
 
     @Override

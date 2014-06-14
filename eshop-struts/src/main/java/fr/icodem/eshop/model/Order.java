@@ -1,35 +1,23 @@
 package fr.icodem.eshop.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Entity @Table(name = "purchase_order")
 public class Order implements Serializable {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "order_date") @Temporal(TemporalType.TIMESTAMP)
     private Date date;
 
-    @Column(name = "order_number")
     private String orderNumber;
 
-    @Column(name = "tracking_number")
     private String trackingNumber;
 
-    @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
-    @ManyToOne @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    // CascadeType.PERSIST is not sufficient => TransientObjectException
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "order")
-    //@JoinColumn(name = "order_id") // if unidirectionnal one-to-many, then foreign key cannot be not null
-    @OrderColumn(name = "position")
     private List<OrderLine> lines;
 
     public void addLine(Product p, int quantity) {

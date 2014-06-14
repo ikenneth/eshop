@@ -10,8 +10,12 @@ import javax.annotation.Resource;
 
 public class RegisterAction extends ActionSupport implements Preparable {
 
-    @Resource
     private SecurityService service;
+
+    // setter for injection
+    public void setSecurityService(SecurityService service) {
+        this.service = service;
+    }
 
     private Registration registration;
 

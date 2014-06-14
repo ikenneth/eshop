@@ -1,16 +1,12 @@
 package fr.icodem.eshop.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
-@Entity @Table(name = "product_family")
 public class ProductFamily implements Serializable {
-    @Id
     private int id;
     private String name;
 
-    @OneToMany @JoinColumn(name = "parent_id")
     private List<ProductFamily> subFamilies;
 
     // getters and setters

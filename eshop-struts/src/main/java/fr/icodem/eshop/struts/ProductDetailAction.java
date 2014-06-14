@@ -15,8 +15,12 @@ public class ProductDetailAction extends ActionSupport {
     private int productId;
     private Product product;
 
-    @Resource
     private CatalogService service;
+
+    // setter for injection
+    public void setCatalogService(CatalogService service) {
+        this.service = service;
+    }
 
     @Override
     public String execute() throws Exception {
